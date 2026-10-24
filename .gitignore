@@ -1,0 +1,54 @@
+# Build output
+bin/
+obj/
+out/
+artifacts/
+[Dd]ebug/
+[Rr]elease/
+
+# Test and coverage output
+TestResults/
+CoverageResults/
+coverage/
+*.coverage
+*.coveragexml
+
+# NuGet and MSBuild
+*.nupkg
+*.snupkg
+project.lock.json
+project.fragment.lock.json
+*.binlog
+
+# Visual Studio
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# JetBrains Rider/ReSharper
+.idea/
+*.DotSettings.user
+
+# Local configuration and secrets
+.env
+.env.*
+!.env.example
+appsettings.*.local.json
+appsettings.Development.json
+appsettings.Production.json
+secrets.json
+
+# Logs and temporary files
+*.log
+*.tmp
+*.temp
+*~
+~$*
+
+# Operating-system files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
