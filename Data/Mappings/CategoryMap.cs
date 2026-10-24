@@ -11,15 +11,15 @@ public class CategoryMap : IEntityTypeConfiguration<Category>
         // Tabela
         builder.ToTable("Category");
 
-        // Chave primária
+        // Chave
         builder.HasKey(x => x.Id);
 
         // Identity
         builder.Property(x => x.Id)
             .ValueGeneratedOnAdd()
-            .UseIdentityColumn(); // PRIMARY KEY IDENTITY(1, 1)
+            .UseIdentityColumn();
 
-        // Propriedades
+        // Campos
         builder.Property (x => x.Name)
             .IsRequired()
             .HasColumnName("Name")
@@ -28,7 +28,7 @@ public class CategoryMap : IEntityTypeConfiguration<Category>
 
         builder.Property (x => x.Slug)
             .IsRequired()
-            .HasColumnName("Name")
+            .HasColumnName("Slug")
             .HasColumnType("VARCHAR")
             .HasMaxLength(80);
 

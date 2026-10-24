@@ -6,12 +6,13 @@ namespace Blog.Data.Mappings;
 
 public class UserMap : IEntityTypeConfiguration<User>
 {
+    // Configuração
     public void Configure(EntityTypeBuilder<User> builder)
     {
         // Tabela
         builder.ToTable("User");
 
-        // Chave primária
+        // Chave
         builder.HasKey(x => x.Id);
 
         // Identity
@@ -19,7 +20,7 @@ public class UserMap : IEntityTypeConfiguration<User>
             .ValueGeneratedOnAdd()
             .UseIdentityColumn();
 
-        // Propriedades
+        // Campos
         builder.Property(x => x.Name)
             .IsRequired()
             .HasColumnName("Name")
@@ -63,12 +64,7 @@ public class UserMap : IEntityTypeConfiguration<User>
         builder.HasIndex(x => x.Slug, "IX_User_Slug")
             .IsUnique();
 
-        // Relacionamentos
-        builder.HasMany(x => x.Posts)
-            .WithOne(x => x.Author)
-            .HasForeignKey("AuthorId")
-            .OnDelete(DeleteBehavior.Restrict);
-
+        // Relações
         builder.HasMany(x => x.Roles)
             .WithMany(x => x.Users)
             .UsingEntity<Dictionary<string, object>>(
