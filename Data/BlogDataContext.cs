@@ -1,6 +1,7 @@
 using Blog.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using System.Reflection;
 
 namespace Blog.Data;
 
@@ -28,5 +29,11 @@ public class BlogDataContext : DbContext
         options.UseSqlServer(connectionString);
 
         // options.LogTo(Console.WriteLine);
+    }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+        base.OnModelCreating(modelBuilder);
     }
 }
