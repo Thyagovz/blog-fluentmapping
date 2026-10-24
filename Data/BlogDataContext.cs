@@ -1,12 +1,18 @@
 using Blog.Models;
+using Blog.Data.Mappings;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using System.Reflection;
 
 namespace Blog.Data;
 
 public class BlogDataContext : DbContext
 {
+    public DbSet<User> Users => Set<User>();
+    public DbSet<Post> Posts => Set<Post>();
+    public DbSet<Category> Categories => Set<Category>();
+    public DbSet<Tag> Tags => Set<Tag>();
+    public DbSet<Role> Roles => Set<Role>();
+
     protected override void OnConfiguring(DbContextOptionsBuilder options)
     {
         // Lê a configuração a partir da pasta de saída da aplicação.
@@ -33,7 +39,12 @@ public class BlogDataContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         base.OnModelCreating(modelBuilder);
+
+        modelBuilder.ApplyConfiguration(new UserMap());
+        modelBuilder.ApplyConfiguration(new PostMap());
+        modelBuilder.ApplyConfiguration(new CategoryMap());
+        modelBuilder.ApplyConfiguration(new TagMap());
+        modelBuilder.ApplyConfiguration(new RoleMap());
     }
 }

@@ -72,10 +72,12 @@ public class UserMap : IEntityTypeConfiguration<User>
                 right => right.HasOne<Role>()
                     .WithMany()
                     .HasForeignKey("RoleId")
+                    .HasConstraintName("FK_UserRole_RoleId")
                     .OnDelete(DeleteBehavior.Cascade),
                 left => left.HasOne<User>()
                     .WithMany()
                     .HasForeignKey("UserId")
+                    .HasConstraintName("FK_UserRole_UserId")
                     .OnDelete(DeleteBehavior.Cascade),
                 join =>
                 {
